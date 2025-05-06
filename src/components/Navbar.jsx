@@ -1,8 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const link = (
-    <div className=" flex-col md:flex md:gap-3 w-full">
+    <div className="flex-col md:flex md:gap-3 w-full">
       <div className=" md:flex md:gap-3 *:block w-full">
         <NavLink
           className={({ isActive }) =>
@@ -16,7 +16,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             `${isActive ? "text-purple-500 underline" : ""}`
           }
-          to="/shanto"
+          to="/meals"
         >
           Meals
         </NavLink>
@@ -24,7 +24,7 @@ const Navbar = () => {
           className={({ isActive }) =>
             `${isActive ? "text-purple-500 underline " : "text-md"}`
           }
-          to="/kausar"
+          to="/upcomingMeals"
         >
           Upcoming Meals
         </NavLink>
@@ -32,7 +32,7 @@ const Navbar = () => {
     </div>
   );
   return (
-    <div className="py-4 sticky top-0 z-20 bg-white/30  backdrop-blur-xl">
+    <div className="py-4 sticky top-0 z-20 bg-white/30  backdrop-blur-xl  shadow-sm">
       <div className="navbar flex mx-auto md:w-[90%] lg:w-[70%]  text-black font-semibold ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -59,16 +59,20 @@ const Navbar = () => {
               <li>{link}</li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="text-2xl font-bold">Hostel Management</a>
         </div>
 
-        <div className="navbar-end">
-          <div className=" hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              <li>{link}</li>
-            </ul>
+        <div className="navbar-end ml-5">
+          <div className=" hidden lg:flex ">
+            <ul>{link}</ul>
           </div>
-          <a className="btn">Button</a>
+          <Link
+            className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300
+               ease-in-out transform hover:scale-105"
+            to="/login"
+          >
+            Join Us
+          </Link>
         </div>
       </div>
     </div>
