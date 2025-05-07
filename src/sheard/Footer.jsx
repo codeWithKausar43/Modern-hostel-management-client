@@ -13,7 +13,7 @@ const Footer = () => {
             Hostel Management System
             </h2>
             <p class="text-sm">
-              Leading the way in IT education. Practical skills, real success.
+            Modernizing hostel management, one step at a time.
             </p>
           </div>
 

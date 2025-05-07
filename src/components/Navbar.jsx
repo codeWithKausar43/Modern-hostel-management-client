@@ -1,24 +1,26 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
+import { FaUser } from "react-icons/fa";
+import { IoFastFood } from "react-icons/io5";
 
 const Navbar = () => {
-  const { user,singOutuser } = useContext(AuthContext);
+  const { user, singOutuser } = useContext(AuthContext);
   const handleSingOut = () => {
     singOutuser()
-    .then(() =>{
-      console.log("successful singOUt")
-    })
-    .catch(error => {
-      console.log(error.message)
-    })
-  }
+      .then(() => {
+        console.log("successful singOUt");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   const link = (
     <div className="flex-col md:flex md:gap-3 w-full">
       <div className=" md:flex md:gap-3 *:block w-full">
         <NavLink
           className={({ isActive }) =>
-            ` ${isActive ? "text-purple-500 underline " : "text-md"}`
+            ` ${isActive ? "text-orange-500 underline-offset-3 underline " : "text-md"}`
           }
           to="/"
         >
@@ -26,7 +28,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            `${isActive ? "text-purple-500 underline" : ""}`
+            `${isActive ? "text-orange-500 underline-offset-3 underline " : ""}`
           }
           to="/meals"
         >
@@ -34,7 +36,7 @@ const Navbar = () => {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            `${isActive ? "text-purple-500 underline " : "text-md"}`
+            `${isActive ? "text-orange-500 underline-offset-3 underline " : "text-md"}`
           }
           to="/upcomingMeals"
         >
@@ -71,19 +73,23 @@ const Navbar = () => {
               <li>{link}</li>
             </ul>
           </div>
-          <a className="text-2xl font-bold">Hostel Management</a>
+          <div className="flex justify-center items-center">
+          <IoFastFood className="size-6 text-orange-400 mr-2" />
+          <a className="text-2xl font-bold text-orange-300 hidden md:flex"><span className="text-orange-500 mr-2">Hostel</span>Management</a>
+          </div>
         </div>
 
-        <div className="navbar-end ml-5">
+        <div className="navbar-end">
           <div className=" hidden lg:flex ">
             <ul>{link}</ul>
           </div>
           {user ? (
             <>
               <Link
-                className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300
-               ease-in-out transform hover:scale-105 ml-7"
-                to="/" onClick={handleSingOut}
+                className="flex ml-4 items-center gap-2 text-orange-500 font-semibold hover:shadow-md px-4 py-2 rounded-lg shadow-lg
+                shadow-orange-200 transition duration-300 ease-in-out bg-white"
+                to="/"
+                onClick={handleSingOut}
               >
                 SignOut
               </Link>
@@ -91,11 +97,12 @@ const Navbar = () => {
           ) : (
             <>
               <Link
-                className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300
-               ease-in-out transform hover:scale-105 ml-7"
                 to="/login"
+                className="flex ml-4 items-center gap-2 text-orange-500 font-semibold hover:shadow-md px-4 py-2 rounded-lg shadow-lg
+                shadow-orange-200 transition duration-300 ease-in-out bg-white"
               >
-                Join Us
+                <FaUser />
+                <span>Login</span>
               </Link>
             </>
           )}

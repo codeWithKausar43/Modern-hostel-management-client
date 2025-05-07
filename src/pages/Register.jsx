@@ -3,12 +3,13 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
+import { alert } from "@material-tailwind/react";
  
  
  
 const Register = () => {
 
-const {createUser} = useContext(AuthContext)
+const {createUser, singInGoogle} = useContext(AuthContext)
 
 
 const   handleCreateUser = e => {
@@ -27,7 +28,15 @@ const   handleCreateUser = e => {
   })
 }
  
-
+ const handleSignInwithGoogle = () => {
+    singInGoogle()
+    .then(result => {
+      alert(result.user)
+    })
+    .catch(error => {
+      alert(error.message)
+    })
+  }
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-sm">
@@ -130,9 +139,9 @@ const   handleCreateUser = e => {
           </div>
 
           {/* Google */}
-          <button
+          <button onClick={handleSignInwithGoogle}
             type="button"
-            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded hover:bg-gray-100"
+            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded hover:bg-gray-100 cursor-pointer"
           >
             <FcGoogle className="text-xl mr-2" />
             Login with Google

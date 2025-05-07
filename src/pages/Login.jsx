@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
+import { alert } from "@material-tailwind/react";
+import Swal from "sweetalert2";
 
 const Login = () => {
-  const { singInUser } = useContext(AuthContext)
+  const { singInUser, singInGoogle } = useContext(AuthContext)
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
@@ -13,13 +15,32 @@ const Login = () => {
     console.log(email, password);
     // password validation
     singInUser(email, password)
-    .then(result => {
-      console.log("login user",result.user)
+    .then( () => {
+      Swal.fire({
+        title:" Login success",
+        icon: "success",
+        draggable: true
+      });
+      
     })
-    .catch(error => {
-      console.log(error.message)
+    .catch(() => {
+      Swal.fire({
+        title:"sorry",
+        icon: "error",
+        draggable: true
+      });
     })
   };
+
+  const handleSignInwithGoogle = () => {
+    singInGoogle()
+    .then(result => {
+      alert(result.user)
+    })
+    .catch(error => {
+      alert(error.message)
+    })
+  }
 
   return (
     <div className="min-h-svh flex items-center justify-center bg-gray-100 px-4">
@@ -91,9 +112,9 @@ const Login = () => {
           </div>
 
           {/* Google */}
-          <button
+          <button onClick={handleSignInwithGoogle}
             type="button"
-            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded hover:bg-gray-100"
+            className="w-full flex items-center justify-center border border-gray-300 py-2 rounded hover:bg-gray-100 cursor-pointer"
           >
             <FcGoogle className="text-xl mr-2" />
             Login with Google
