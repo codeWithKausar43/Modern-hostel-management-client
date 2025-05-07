@@ -1,15 +1,40 @@
 
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-
+import AuthContext from "../context/AuthContext/AuthContext";
+ 
+ 
+ 
 const Register = () => {
+
+const {createUser} = useContext(AuthContext)
+
+
+const   handleCreateUser = e => {
+  e.preventDefault()
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+  console.log(name, email,password)
+
+  createUser(email,password)
+  .then(result => {
+    console.log(result.user)
+  })
+  .catch(error => {
+    console.log(error.message)
+  })
+}
+ 
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-700 underline underline-offset-4">
           Sing Up
         </h2>
-        <form>
+        <form onSubmit={handleCreateUser}>
           {/* Name Field */}
           <div className="relative z-0 w-full mb-5 group">
             <input

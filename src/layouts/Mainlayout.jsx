@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../sheard/Footer";
 
 const Mainlayout = () => {
   return (
@@ -8,6 +9,7 @@ const Mainlayout = () => {
       <div className="min-h-[330px]">
         <Outlet></Outlet>
       </div>
+      <Footer></Footer>
     </div>
   );
 };

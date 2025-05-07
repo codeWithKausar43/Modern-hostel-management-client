@@ -1,14 +1,33 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/AuthContext/AuthContext";
 
 const Login = () => {
+  const { singInUser } = useContext(AuthContext)
+
+  const handleLoginSubmit = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    // password validation
+    singInUser(email, password)
+    .then(result => {
+      console.log("login user",result.user)
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
+  };
+
   return (
     <div className="min-h-svh flex items-center justify-center bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-md shadow-md w-full max-w-sm">
         <h2 className="text-2xl font-bold text-center mb-6 text-gray-700 underline underline-offset-4">
           Sign In
         </h2>
-        <form>
+        <form onSubmit={handleLoginSubmit}>
           {/* Email Field */}
           <div className="relative z-0 w-full mb-5 group">
             <input
@@ -36,8 +55,9 @@ const Login = () => {
             <input
               type="password"
               name="password"
+              autocomplete="current-password"
               id="password"
-              placeholder=" "
+              placeholder=""
               required
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 
                            border-b-2 border-gray-300 appearance-none focus:outline-none 
@@ -60,7 +80,7 @@ const Login = () => {
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
           >
-            Sign Up
+            Sign In
           </button>
 
           {/* Divider */}

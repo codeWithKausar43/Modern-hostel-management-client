@@ -1,6 +1,18 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import AuthContext from "../context/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user,singOutuser } = useContext(AuthContext);
+  const handleSingOut = () => {
+    singOutuser()
+    .then(() =>{
+      console.log("successful singOUt")
+    })
+    .catch(error => {
+      console.log(error.message)
+    })
+  }
   const link = (
     <div className="flex-col md:flex md:gap-3 w-full">
       <div className=" md:flex md:gap-3 *:block w-full">
@@ -66,13 +78,27 @@ const Navbar = () => {
           <div className=" hidden lg:flex ">
             <ul>{link}</ul>
           </div>
-          <Link
-            className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300
-               ease-in-out transform hover:scale-105"
-            to="/login"
-          >
-            Join Us
-          </Link>
+          {user ? (
+            <>
+              <Link
+                className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300
+               ease-in-out transform hover:scale-105 ml-7"
+                to="/" onClick={handleSingOut}
+              >
+                SignOut
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                className="bg-blue-500 text-white px-5 py-2 rounded-lg shadow hover:bg-blue-600 transition duration-300
+               ease-in-out transform hover:scale-105 ml-7"
+                to="/login"
+              >
+                Join Us
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>
