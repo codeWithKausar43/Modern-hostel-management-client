@@ -8,6 +8,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MealDetails from "../pages/MealDetails";
 import PrivateRoute from "./PrivateRoute";
+import DashboardLayout from "../layouts/DashboardLayout";
+import AddMeal from "../pages/Dashboar/AddMeal/AddMeal";
 
 const router = createBrowserRouter([
     {
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
         }
       ]
     },
+    {
+      path:"dashboard",
+      element: <DashboardLayout></DashboardLayout>,
+      children: [
+        {
+          path:"/dashboard/addMeal",
+          element: <AddMeal></AddMeal>
+        }
+      ]
+    }
   ]);
 
 export default router;

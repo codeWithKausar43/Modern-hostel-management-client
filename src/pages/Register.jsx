@@ -9,19 +9,25 @@ import { alert } from "@material-tailwind/react";
  
 const Register = () => {
 
-const {createUser, singInGoogle} = useContext(AuthContext)
+const {createUser, singInGoogle,upDataUserProfile} = useContext(AuthContext)
 
 
 const   handleCreateUser = e => {
   e.preventDefault()
-  const name = e.target.name.value;
+  const name = e.target.userName.value;
+  const photoUrl = e.target.photoUrl.value;
   const email = e.target.email.value;
   const password = e.target.password.value;
-  console.log(name, email,password)
-
+  console.log(name, photoUrl)
   createUser(email,password)
   .then(result => {
-    console.log(result.user)
+  upDataUserProfile(name, photoUrl)
+  .then(() => {
+    console.log(result)
+  })
+  .catch((error) =>{
+    console.log(error)
+  })
   })
   .catch(error => {
     console.log(error.message)
@@ -48,7 +54,7 @@ const   handleCreateUser = e => {
           <div className="relative z-0 w-full mb-5 group">
             <input
               type="text"
-              name="name"
+              name="userName"
               id="name"
               placeholder=" "
               required
@@ -63,6 +69,28 @@ const   handleCreateUser = e => {
                          peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Full Name
+            </label>
+          </div>
+
+          {/*  photo url*/}
+          <div className="relative z-0 w-full mb-5 group">
+            <input
+              type="url"
+              name="photoUrl"
+              id="name"
+              placeholder=" "
+              required
+              className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 
+                         border-b-2 border-gray-300 appearance-none focus:outline-none 
+                         focus:ring-0 focus:border-blue-600 peer"
+            />
+            <label
+              htmlFor="name"
+              className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 
+                         top-3 -z-10 origin-[0] left-0 peer-placeholder-shown:scale-100 
+                         peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >
+              Photo Url
             </label>
           </div>
 

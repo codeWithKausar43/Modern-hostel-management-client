@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 import { alert } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const { singInUser, singInGoogle } = useContext(AuthContext)
-
+const location = useLocation()
+const navigate = useNavigate()
+const from = location.state || "/" 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -21,7 +23,7 @@ const Login = () => {
         icon: "success",
         draggable: true
       });
-      
+      navigate(from)
     })
     .catch(() => {
       Swal.fire({
@@ -36,6 +38,7 @@ const Login = () => {
     singInGoogle()
     .then(result => {
       alert(result.user)
+      navigate(from)
     })
     .catch(error => {
       alert(error.message)
