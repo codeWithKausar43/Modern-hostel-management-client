@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 const MealCard = ({ item }) => {
   const { _id, title, rating, photoUrl, price, description } = item || {};
-  console.log("Rating is:", rating);
   return (
     <div className=" sm:px-2 px-2 md:px-0">
-      <div className="card bg-base-100 shadow-xl group overflow-hidden relative hover:scale-105 hover:shadow-2xl transition-transform duration-500 ease-in-out">
+      <div className="card h-[330px] bg-base-100 shadow-xl group overflow-hidden relative hover:scale-105 hover:shadow-2xl transition-transform duration-500 ease-in-out">
         {/* Image Section */}
         <figure className="relative">
           <img
@@ -31,7 +30,7 @@ const MealCard = ({ item }) => {
 
         {/* Card Body */}
         <div className="card-body">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-start">
             <p className="text-sm font-semibold">{title}</p>
             <Rating style={{ maxWidth: 120 }} value={rating} readOnly />
           </div>

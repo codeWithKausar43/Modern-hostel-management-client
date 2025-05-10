@@ -4,7 +4,7 @@ import "react-tabs/style/react-tabs.css";
 import SectionTItle from "../sheard/SectionTItle";
 import useMeals from "../hooks/useMeals";
 import MealCard from "./MealCard";
-
+import '../css/tabs.css'
 const MealsCategory = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
@@ -27,12 +27,22 @@ const MealsCategory = () => {
         }
       ></SectionTItle>
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
-        <TabList>
-          <Tab>Breakfast</Tab>
-          <Tab>Lunch</Tab>
-          <Tab>Dinner</Tab>
-          <Tab>All Categorys</Tab>
+
+         <TabList className="flex flex-wrap justify-center gap-4 my-8">
+          {["Breakfast", "Lunch", "Dinner", "All Categories"].map((label, i) => (
+            <Tab
+              key={i}
+              className={`px-5 py-2.5 text-base md:text-lg font-semibold rounded-md border border-gray-300 text-gray-600 hover:bg-orange-100 hover:text-orange-600 cursor-pointer transition-all duration-200 ease-in-out ${
+                tabIndex === i
+                  ? "tab-selected"
+                  : "data-[selected]:bg-orange-500 data-[selected]:text-white data-[selected]:border-orange-500 shadow-sm"
+              }`}
+            >
+              {label}
+            </Tab>
+          ))}
         </TabList>
+
         <TabPanel>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mt-8">
             {breakfastMeals.slice(0, 4).map((meal) => (

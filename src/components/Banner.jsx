@@ -22,124 +22,140 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div
-            className="h-[70vh] bg-center bg-cover flex items-center justify-center"
-            style={{
-              backgroundImage: `url(${banner1})`,
-            }}
-          >
-            <div className="text-center ">
-              <h2 className="text-white md:text-2xl lg:text-3xl text-xl font-bold">
-                Explore The World of Street Food Delights
-              </h2>
-              <p className="text-white hidden md:flex lg:w-200 md:w-100 w-80 mx-auto">
-                unleash your taste buds with vibrant street food from bustling
+            <div className="relative h-[70vh]">
+            {/* Blurred Background Image */}
+            <img
+              src={banner1}
+              alt="Banner"
+              className="absolute inset-0 w-full h-full object-cover blur-md"
+            />
+
+            {/* Text Content */}
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-center px-4">
+                <h2 className="text-white md:text-3xl lg:text-4xl text-xl font-bold">
+             Explore The World of Street Food Delights
+                </h2>
+                <p className="text-white md:text-lg md:font-semibold hidden md:flex lg:w-200 md:w-100 w-80 mx-auto">
+                   unleash your taste buds with vibrant street food from bustling
                 markets around the globe. From savory tacos to sizzling barbecue
                 and exotic stir-fried delicacies, each bite tells a strory of
                 culture and flavor. Whether its a cozy corner stall or a lively
                 food bazaar there s always an adventure waiting in very dish
-              </p>
-              <label className="input mt-6 ">
-                <svg
-                  className="h-[1em] opacity-50"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2.5"
-                    fill="none"
-                    stroke="currentColor"
+                </p>
+                <label className="input mt-6 ">
+                  <svg
+                    className="h-[1em] opacity-50"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
                   >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
-                  </g>
-                </svg>
-                <input type="search" required placeholder="Search" />
-              </label>
+                    <g
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeWidth="2.5"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                  </svg>
+                  <input type="search" required placeholder="Search" />
+                </label>
+              </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div
-            className="h-[70vh] bg-center bg-cover flex items-center justify-center"
-            style={{
-              backgroundImage: `url(${banner2})`,
-            }}
-          >
-            <div className="text-center ">
-              <h2 className="text-white md:text-2xl lg:text-3xl text-xl font-bold">
-                Flavors Of The Night
-              </h2>
-              <p className="text-white hidden md:flex lg:w-200 md:w-100 w-80 mx-auto">
-                Dive into the bustlife of street food vendors offering a variety
+          <div className="relative h-[70vh]">
+            {/* Blurred Background Image */}
+            <img
+              src={banner2}
+              alt="Banner"
+              className="absolute inset-0 w-full h-full object-cover blur-md"
+            />
+
+            {/* Text Content */}
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-center px-4">
+                <h2 className="text-white md:text-3xl lg:text-4xl text-xl font-bold">
+                   Flavors Of The Night
+                </h2>
+                <p className="text-white md:text-lg md:font-semibold hidden md:flex lg:w-200 md:w-100 w-80 mx-auto">
+                   Dive into the bustlife of street food vendors offering a variety
                 of dishes made fresh made fresh before your eyes. From siZzling
                 grills to steaming post, explore the vibrant energy and
                 mouthwatering creations that make every evening a celebration of
                 taste.
-              </p>
-              <label className="input mt-6 ">
-                <svg
-                  className="h-[1em] opacity-50"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2.5"
-                    fill="none"
-                    stroke="currentColor"
+                </p>
+                <label className="input mt-6 ">
+                  <svg
+                    className="h-[1em] opacity-50"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
                   >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
-                  </g>
-                </svg>
-                <input type="search" required placeholder="Search" />
-              </label>
+                    <g
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeWidth="2.5"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                  </svg>
+                  <input type="search" required placeholder="Search" />
+                </label>
+              </div>
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div
-            className="h-[70vh] bg-center bg-cover flex items-center justify-center"
-            style={{
-              backgroundImage: `url(${banner3})`,
-            }}
-          >
-            <div className="text-center ">
-              <h2 className="text-white md:text-2xl lg:text-3xl text-xl font-bold">
-                Savor The Magic Of Street Food
-              </h2>
-              <p className="text-white hidden md:flex lg:w-200 md:w-100 w-80 mx-auto">
-                Discover the heart and soul of culinary traditions at vibrant
-                street food stalls. Each Dish, crafted with passion and local
-                ingredients, invites you to experience authentic flavors and
-                unforgettable moments.
-              </p>
-              <label className="input mt-6 ">
-                <svg
-                  className="h-[1em] opacity-50"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <g
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth="2.5"
-                    fill="none"
-                    stroke="currentColor"
+          <div className="relative h-[70vh]">
+            {/* Blurred Background Image */}
+            <img
+              src={banner3}
+              alt="Banner"
+              className="absolute inset-0 w-full h-full object-cover blur-md"
+            />
+
+            {/* Text Content */}
+            <div className="relative z-10 flex items-center justify-center h-full">
+              <div className="text-center px-4">
+                <h2 className="text-white md:text-3xl lg:text-4xl text-xl font-bold">
+                  Savor The Magic Of Street Food
+                </h2>
+                <p className="text-white md:text-lg md:font-semibold hidden md:flex lg:w-200 md:w-100 w-80 mx-auto">
+                  Discover the heart and soul of culinary traditions at vibrant
+                  street food stalls. Each Dish, crafted with passion and local
+                  ingredients, invites you to experience authentic flavors and
+                  unforgettable moments.
+                </p>
+                <label className="input mt-6 ">
+                  <svg
+                    className="h-[1em] opacity-50"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
                   >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
-                  </g>
-                </svg>
-                <input type="search" required placeholder="Search" />
-              </label>
+                    <g
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeWidth="2.5"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                  </svg>
+                  <input type="search" required placeholder="Search" />
+                </label>
+              </div>
             </div>
           </div>
         </SwiperSlide>
+ 
       </Swiper>
     </div>
   );

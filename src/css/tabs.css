@@ -1,0 +1,16 @@
+@keyframes slideEffect {
+    0% {
+      transform: scaleX(0);
+      transform-origin: bottom;
+    }
+    100% {
+      transform: scaleX(1);
+      transform-origin: bottom;
+    }
+  }
+  
+  .tab-selected {
+    background-color: #f97316; /* Orange color */
+    color: white;
+    animation: slideEffect 0.3s ease-out;
+  }
