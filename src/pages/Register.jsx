@@ -23,7 +23,7 @@ const   handleCreateUser = e => {
   .then(result => {
   upDataUserProfile(name, photoUrl)
   .then(() => {
-    console.log(result)
+    console.log(result) 
   })
   .catch((error) =>{
     console.log(error)

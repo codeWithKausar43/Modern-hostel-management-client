@@ -5,8 +5,14 @@ import { Helmet } from "react-helmet";
 import { BiSolidLike } from "react-icons/bi";
 import { FaStarOfDavid } from "react-icons/fa";
 import { useLoaderData } from "react-router-dom";
-
+import useAuth from "../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+ 
 const MealDetails = () => {
+const axiosSecure = useAxiosSecure()
+  const { user } = useAuth();
+ 
   const {
     photoUrl,
     title,
@@ -18,13 +24,43 @@ const MealDetails = () => {
     deadline,
     category,
     name,
+    _id
   } = useLoaderData();
-  console.log();
+
   const meal = useLoaderData();
-  console.log(meal);
   const [rating, setRating] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
 
+  const { register, handleSubmit } = useForm();
+
+  // reviews
+  const onSubmit = async (data) => {
+      const reviewInfo = {
+        deadline : startDate.toLocaleDateString(), 
+        review : data?.review, 
+        title : data?.title, 
+        meal_photoUrl: photoUrl,
+        rating: rating,
+        meal_id: _id,
+        like,
+        review_count : 0 ,
+        
+        user: {
+          name: user?.displayName, 
+          email : user?.email,
+          photoUrl : user?.photoURL
+        }
+      }
+      console.log(reviewInfo);
+      axiosSecure.post("/review", reviewInfo) 
+      .then(res => {
+        console.log(res)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+       
+  };
   return (
     <>
       <Helmet>
@@ -73,7 +109,7 @@ const MealDetails = () => {
           </div>
           <div>
             <h3 className="mb-8 text-xl ">Review : </h3>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
               {/* Date Picker Input Field */}
               <div className="flex flex-col md:flex-row  justify-between ">
                 <div>
@@ -90,8 +126,11 @@ const MealDetails = () => {
                   <Rating
                     style={{ maxWidth: 180 }}
                     value={rating}
-                    onChange={setRating}
-                    required
+                    onChange={(value, e) => {
+                      e?.preventDefault();
+                      e?.stopPropagation();
+                      setRating(value);
+                    }}
                   />
                 </div>
               </div>
@@ -101,10 +140,10 @@ const MealDetails = () => {
                     <span className="label-text"> Title :</span>
                   </label>
                   <input
+                    {...register("title")}
                     type="text"
-                    name="title"
                     placeholder="service title"
-                    defaultValue={"meal.title"}
+                    defaultValue={meal.title}
                     readOnly
                     className="input input-bordered"
                     required
@@ -115,10 +154,10 @@ const MealDetails = () => {
                     <span className="label-text">User Email:</span>
                   </label>
                   <input
+                    {...register("email")}
                     type="email"
-                    name="email"
                     placeholder="user email"
-                    defaultValue={"user?.email"}
+                    defaultValue={user?.email}
                     readOnly
                     className="input input-bordered"
                     required
@@ -129,7 +168,7 @@ const MealDetails = () => {
                 <span className="label-text">Review :</span>
               </label>
               <textarea
-                name="review"
+                {...register("review")}
                 className="textarea textarea-bordered w-full"
                 placeholder="review"
                 required

@@ -6,10 +6,10 @@ import { alert } from "@material-tailwind/react";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { singInUser, singInGoogle } = useContext(AuthContext)
-const location = useLocation()
-const navigate = useNavigate()
-const from = location.state || "/" 
+  const { singInUser, singInGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
@@ -17,33 +17,33 @@ const from = location.state || "/"
     console.log(email, password);
     // password validation
     singInUser(email, password)
-    .then( () => {
-      Swal.fire({
-        title:" Login success",
-        icon: "success",
-        draggable: true
+      .then(() => {
+        Swal.fire({
+          title: " Login success",
+          icon: "success",
+          draggable: true,
+        });
+        navigate(from);
+      })
+      .catch(() => {
+        Swal.fire({
+          title: "sorry",
+          icon: "error",
+          draggable: true,
+        });
       });
-      navigate(from)
-    })
-    .catch(() => {
-      Swal.fire({
-        title:"sorry",
-        icon: "error",
-        draggable: true
-      });
-    })
   };
 
   const handleSignInwithGoogle = () => {
     singInGoogle()
-    .then(result => {
-      alert(result.user)
-      navigate(from)
-    })
-    .catch(error => {
-      alert(error.message)
-    })
-  }
+      .then((result) => {
+        alert(result.user);
+        navigate(from);
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
+  };
 
   return (
     <div className="min-h-svh flex items-center justify-center bg-gray-100 px-4">
@@ -115,7 +115,8 @@ const from = location.state || "/"
           </div>
 
           {/* Google */}
-          <button onClick={handleSignInwithGoogle}
+          <button
+            onClick={handleSignInwithGoogle}
             type="button"
             className="w-full flex items-center justify-center border border-gray-300 py-2 rounded hover:bg-gray-100 cursor-pointer"
           >
