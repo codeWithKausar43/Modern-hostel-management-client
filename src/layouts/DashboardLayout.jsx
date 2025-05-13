@@ -56,7 +56,7 @@ const DashboardLayout = () => {
               </ActiveLink>
             </li>
             <li>
-              <ActiveLink to="/dashboard/allReview" className="mb-2">
+              <ActiveLink to="/dashboard/allReviews" className="mb-2">
                 <MdRateReview /> All Reviews
               </ActiveLink>
             </li>

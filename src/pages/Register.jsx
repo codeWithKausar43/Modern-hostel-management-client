@@ -4,36 +4,65 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 import { alert } from "@material-tailwind/react";
+import useAxiosPublic from "../hooks/useAxiosPublic";
  
  
  
 const Register = () => {
-
+const axiosPublic = useAxiosPublic()
 const {createUser, singInGoogle,upDataUserProfile} = useContext(AuthContext)
 
 
-const   handleCreateUser = e => {
-  e.preventDefault()
+// const handleCreateUser = e => {
+//   e.preventDefault()
+//   const name = e.target.userName.value;
+//   const photoUrl = e.target.photoUrl.value;
+//   const email = e.target.email.value;
+//   const password = e.target.password.value;
+//   createUser(email,password)
+//   .then(() => {
+//   upDataUserProfile(name, photoUrl)
+//   .then(() => {
+//     const userInfo = {
+//       name : name, 
+//       email : email, 
+//       photoUrl : photoUrl
+//     }
+//         console.log(userInfo)
+//     axiosPublic.post("/users", userInfo)
+//     .then(res => {
+//        console.log(res.data);
+//     })
+//   })
+//   .catch((error) =>{
+//     console.log(error)
+//   })
+//   })
+//   .catch(error => {
+//     console.log(error.message)
+//   })
+// }
+ const handleCreateUser = async (e) => {
+  e.preventDefault();
   const name = e.target.userName.value;
   const photoUrl = e.target.photoUrl.value;
   const email = e.target.email.value;
   const password = e.target.password.value;
-  console.log(name, photoUrl)
-  createUser(email,password)
-  .then(result => {
-  upDataUserProfile(name, photoUrl)
-  .then(() => {
-    console.log(result) 
-  })
-  .catch((error) =>{
-    console.log(error)
-  })
-  })
-  .catch(error => {
-    console.log(error.message)
-  })
-}
- 
+
+  try {
+    await createUser(email, password);
+    await upDataUserProfile(name, photoUrl);
+
+    const userInfo = { name, email, photoUrl };
+  
+    await axiosPublic.post("/users", userInfo);
+   
+    e.target.reset();
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+};
+
  const handleSignInwithGoogle = () => {
     singInGoogle()
     .then(result => {
