@@ -10,6 +10,8 @@ import MealDetails from "../pages/MealDetails";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import AddMeal from "../pages/Dashboar/AddMeal/AddMeal";
+import AllMeals from "../pages/Dashboar/AllMeals/AllMeals";
+import AllUser from "../pages/Dashboar/AllUsers/Allusers";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
         {
           path:"/dashboard/addMeal",
           element: <AddMeal></AddMeal>
+        },
+        {
+          path:"/dashboard/allMelas",
+          element: <AllMeals></AllMeals>
+        },
+        {
+          path:"/dashboard/allUsers", 
+          element:<AllUser></AllUser>
         }
       ]
     }
